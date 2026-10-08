@@ -1,0 +1,6 @@
+{
+  "name": "Adaptation Island - Primary Science Mastery",
+  "description": "Interactive primary science learning portal and 4 mastery games exploring Chapter 4: Adaptations, structural vs behavioural traits, and habitat survival.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
