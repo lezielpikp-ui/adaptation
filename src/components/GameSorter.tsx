@@ -163,8 +163,6 @@ export const GameSorter: React.FC<GameSorterProps> = ({
         <div>
           <div className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-800">
             <span>Game 1: Classification Lab</span>
-            <span aria-hidden="true">·</span>
-            <span>LO 4.2, LO 4.3, LO 4.4</span>
             {dailyMissionText && (
               <>
                 <span aria-hidden="true">·</span>

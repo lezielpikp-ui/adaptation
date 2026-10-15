@@ -115,8 +115,6 @@ export const GameSpeedMaster: React.FC<GameSpeedMasterProps> = ({
         <div>
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-800">
             <span>Game 4: Speed Master</span>
-            <span aria-hidden="true">·</span>
-            <span>All 7 Curriculum Objectives</span>
             {dailyMissionText && (
               <>
                 <span aria-hidden="true">·</span>

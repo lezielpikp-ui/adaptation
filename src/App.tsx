@@ -352,18 +352,20 @@ export default function App() {
       </main>
 
       {/* Clean Primary Science Curriculum Footer */}
-      <footer className="border-t border-slate-200 bg-white py-6 mt-12 text-center text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-slate-800">Adaptation Island</span>
-            <span>·</span>
-            <span>Primary Science Curriculum (Chapter 4: Adaptations)</span>
+      {(activeTab === 'explore' || activeTab === 'mastery') && (
+        <footer className="border-t border-slate-200 bg-white py-6 mt-12 text-center text-xs text-slate-500">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <span className="font-bold text-slate-800">Adaptation Island</span>
+              <span>·</span>
+              <span>Primary Science Curriculum (Chapter 4: Adaptations)</span>
+            </div>
+            <div>
+              <span>Structural Body Parts &amp; Behavioural Actions for Survival</span>
+            </div>
           </div>
-          <div>
-            <span>Structural Body Parts &amp; Behavioural Actions for Survival · Daily Missions Active</span>
-          </div>
-        </div>
-      </footer>
+        </footer>
+      )}
     </div>
   );
 }

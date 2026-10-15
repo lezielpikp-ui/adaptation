@@ -205,8 +205,6 @@ export const GameBioCraft: React.FC<GameBioCraftProps> = ({
         <div>
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-violet-800">
             <span>Game 3: BioCraft Engineering</span>
-            <span aria-hidden="true">·</span>
-            <span>LO 4.3, LO 4.4, LO 4.7</span>
             {dailyMissionText && (
               <>
                 <span aria-hidden="true">·</span>

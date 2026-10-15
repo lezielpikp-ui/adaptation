@@ -78,8 +78,6 @@ export const GameHabitatDetective: React.FC<GameHabitatDetectiveProps> = ({
         <div>
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-800">
             <span>Game 2: Habitat Detective</span>
-            <span aria-hidden="true">·</span>
-            <span>LO 4.1, LO 4.5, LO 4.6, LO 4.7</span>
             {dailyMissionText && (
               <>
                 <span aria-hidden="true">·</span>

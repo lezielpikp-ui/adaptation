@@ -220,9 +220,6 @@ export const Hero: React.FC<HeroProps> = ({ setActiveTab, gameStats }) => {
                 <p className="text-xs text-slate-600 leading-relaxed">
                   Sort animals and plants into <strong>Structural</strong> (Body Parts) vs <strong>Behavioural</strong> (Actions).
                 </p>
-                <div className="text-xs text-slate-500 pt-1">
-                  <span>Objective: LO 4.2, LO 4.3, LO 4.4</span>
-                </div>
               </div>
             </div>
 
@@ -264,9 +261,6 @@ export const Hero: React.FC<HeroProps> = ({ setActiveTab, gameStats }) => {
                 <p className="text-xs text-slate-600 leading-relaxed">
                   Investigate environmental threats in the Desert, Arctic, Jungle &amp; Ocean and find the winning adaptation!
                 </p>
-                <div className="text-xs text-slate-500 pt-1">
-                  <span>Objective: LO 4.1, LO 4.7</span>
-                </div>
               </div>
             </div>
 
@@ -308,9 +302,6 @@ export const Hero: React.FC<HeroProps> = ({ setActiveTab, gameStats }) => {
                 <p className="text-xs text-slate-600 leading-relaxed">
                   Engineer custom creatures by mixing structural parts and survival behaviours to withstand extreme biomes.
                 </p>
-                <div className="text-xs text-slate-500 pt-1">
-                  <span>Objective: LO 4.3, LO 4.4, LO 4.7</span>
-                </div>
               </div>
             </div>
 
@@ -352,9 +343,6 @@ export const Hero: React.FC<HeroProps> = ({ setActiveTab, gameStats }) => {
                 <p className="text-xs text-slate-600 leading-relaxed">
                   High-energy 10-question gauntlet testing quick classification, plant adaptations, and survival reasons.
                 </p>
-                <div className="text-xs text-slate-500 pt-1">
-                  <span>Objective: All 7 Objectives Diagnostic</span>
-                </div>
               </div>
             </div>
 
