@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Compass, CheckCircle2, ArrowRight, Zap, ShieldCheck } from 'lucide-react';
+import { Sparkles, Compass, CheckCircle2, ArrowRight, Zap, ShieldCheck, BookOpen } from 'lucide-react';
 import {
   heroImage,
   photoPolarBear,
@@ -101,10 +101,23 @@ export const Hero: React.FC<HeroProps> = ({ setActiveTab, gameStats }) => {
               onClick={() => {
                 sound.playClick();
                 setActiveTab('explore');
+                requestAnimationFrame(() => {
+                  setTimeout(() => {
+                    const guideEl = document.getElementById('mini-textbook-guide') || document.getElementById('concept-guide');
+                    if (guideEl) {
+                      guideEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      guideEl.classList.add('ring-4', 'ring-emerald-400', 'ring-offset-4', 'transition-all', 'duration-500');
+                      setTimeout(() => {
+                        guideEl.classList.remove('ring-4', 'ring-emerald-400', 'ring-offset-4');
+                      }, 1800);
+                    }
+                  }, 60);
+                });
               }}
-              className="px-5 py-3 bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold rounded-xl border border-slate-700 transition-colors text-sm cursor-pointer"
+              className="px-5 py-3 bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold rounded-xl border border-slate-700 hover:border-emerald-500 transition-all text-sm cursor-pointer flex items-center gap-2 group shadow-sm"
             >
-              Explore Mini-Textbook Guide
+              <BookOpen className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
+              <span>Explore Mini-Textbook Guide</span>
             </button>
           </div>
         </div>

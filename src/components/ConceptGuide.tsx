@@ -83,15 +83,15 @@ export const ConceptGuide: React.FC<{ onLaunchGame: (gameId: string) => void }> 
   const currentBiome = biomes.find((b) => b.id === selectedBiome) || biomes[0];
 
   return (
-    <div className="space-y-12">
+    <div id="mini-textbook-guide" className="space-y-12 scroll-mt-24 rounded-3xl p-1 transition-all">
       {/* Chapter Introduction Header */}
       <div className="border-b border-slate-200 pb-6">
         <div className="flex items-center gap-2 text-xs font-semibold text-emerald-800 uppercase tracking-wider mb-2">
           <BookOpen className="w-4 h-4 text-emerald-600" />
-          <span>Chapter 4 Learning Guide</span>
+          <span>Chapter 4 · Mini-Textbook Guide</span>
         </div>
         <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-          What is an Adaptation?
+          Mini-Textbook Guide: What is an Adaptation?
         </h2>
         <p className="mt-2 text-slate-600 text-sm sm:text-base max-w-3xl leading-relaxed">
           An <strong className="text-slate-900 font-semibold">adaptation</strong> is any special characteristic that helps an organism (animal or plant) survive in its natural habitat and reproduce. Without these adaptations, organisms would not survive harsh environments or predators!

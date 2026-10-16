@@ -73,10 +73,10 @@ export const GameHabitatDetective: React.FC<GameHabitatDetectiveProps> = ({
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">
-      {/* Header bar */}
+      {/* Top Banner and Status Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-xs">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-800">
+          <div className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-800">
             <span>Game 2: Habitat Detective</span>
             {dailyMissionText && (
               <>
@@ -95,40 +95,26 @@ export const GameHabitatDetective: React.FC<GameHabitatDetectiveProps> = ({
           </p>
         </div>
 
-        {/* Progress & Case selector */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-          <div className="px-3.5 py-1.5 bg-sky-50 border border-sky-200 rounded-xl text-sky-900 text-xs font-bold flex items-center justify-between sm:justify-start gap-2">
-            <span className="flex items-center gap-1">
-              <Compass className="w-3.5 h-3.5 text-sky-600" />
-              <span>Solved:</span>
+        {/* Real-time Game HUD */}
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+          <div className="px-3 py-1.5 bg-slate-100 rounded-lg text-slate-700 text-xs font-semibold flex items-center gap-1">
+            <span>Case:</span>
+            <span className="text-slate-900 font-bold tabular-nums">
+              {activeCaseIndex + 1}
             </span>
-            <span className="font-extrabold text-sky-950 bg-white px-2 py-0.5 rounded-md border border-sky-200">
-              {solvedCases.length} / {DETECTIVE_CASES.length}
-            </span>
+            <span>/ {DETECTIVE_CASES.length}</span>
           </div>
 
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-thin">
-            {DETECTIVE_CASES.map((c, idx) => {
-              const isSolved = solvedCases.includes(c.id);
-              const isSelected = idx === activeCaseIndex;
-              return (
-                <button
-                  key={c.id}
-                  onClick={() => handleSelectCase(idx)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 cursor-pointer ${
-                    isSelected
-                      ? 'bg-sky-600 text-white shadow-xs ring-2 ring-sky-300'
-                      : isSolved
-                      ? 'bg-emerald-50 text-emerald-800 border border-emerald-300 hover:bg-emerald-100'
-                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                  }`}
-                  title={`${c.organism} (${c.habitatName})`}
-                >
-                  {isSolved && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 fill-emerald-100 shrink-0" />}
-                  <span>Case {idx + 1}</span>
-                </button>
-              );
-            })}
+          <div className="px-3 py-1.5 bg-sky-50 border border-sky-200 rounded-lg text-sky-900 text-xs font-bold flex items-center gap-1.5">
+            <Compass className="w-3.5 h-3.5 text-sky-600" />
+            <span>Solved:</span>
+            <span className="text-sky-950 font-black tabular-nums">{solvedCases.length}</span>
+            <span>/ {DETECTIVE_CASES.length}</span>
+          </div>
+
+          <div className="px-3 py-1.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 text-xs font-bold flex items-center gap-1.5">
+            <Award className="w-4 h-4 text-amber-500 fill-amber-400" />
+            <span className="tabular-nums font-mono text-sm">{solvedCases.length * 3}</span> pts
           </div>
         </div>
       </div>
@@ -350,6 +336,106 @@ export const GameHabitatDetective: React.FC<GameHabitatDetectiveProps> = ({
               </div>
             </div>
           )}
+        </div>
+      </div>
+
+      {/* Case Selector Files at Bottom */}
+      <div className="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="p-1.5 bg-sky-100 text-sky-800 rounded-lg">
+                <Compass className="w-4 h-4 text-sky-700" />
+              </span>
+              <h3 className="text-base font-extrabold text-slate-900">
+                Habitat Detective Crime Files
+              </h3>
+              <span className="text-xs font-bold bg-sky-50 text-sky-700 border border-sky-200 px-2.5 py-0.5 rounded-full">
+                {solvedCases.length} of {DETECTIVE_CASES.length} Solved
+              </span>
+            </div>
+            <p className="text-xs text-slate-500 mt-1">
+              Select any case file below to inspect the organism and solve its environmental threat.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2 self-start sm:self-auto">
+            <button
+              onClick={() => {
+                if (activeCaseIndex > 0) handleSelectCase(activeCaseIndex - 1);
+              }}
+              disabled={activeCaseIndex === 0}
+              className="px-3 py-1.5 rounded-lg text-xs font-bold border border-slate-200 text-slate-700 bg-slate-50 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
+            >
+              ← Previous Case
+            </button>
+            <button
+              onClick={() => {
+                if (activeCaseIndex + 1 < DETECTIVE_CASES.length) handleSelectCase(activeCaseIndex + 1);
+              }}
+              disabled={activeCaseIndex + 1 >= DETECTIVE_CASES.length}
+              className="px-3 py-1.5 rounded-lg text-xs font-bold border border-slate-200 text-slate-700 bg-slate-50 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
+            >
+              Next Case →
+            </button>
+          </div>
+        </div>
+
+        {/* 12 Cases Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+          {DETECTIVE_CASES.map((c, idx) => {
+            const isSolved = solvedCases.includes(c.id);
+            const isSelected = idx === activeCaseIndex;
+            return (
+              <button
+                key={c.id}
+                onClick={() => handleSelectCase(idx)}
+                className={`p-3 rounded-2xl text-xs font-bold transition-all flex flex-col items-start gap-1 cursor-pointer border text-left relative overflow-hidden group ${
+                  isSelected
+                    ? 'bg-sky-600 text-white border-sky-600 shadow-md ring-2 ring-sky-300 ring-offset-2'
+                    : isSolved
+                    ? 'bg-emerald-50 text-emerald-950 border-emerald-300 hover:bg-emerald-100 hover:border-emerald-400'
+                    : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-white hover:border-slate-300 hover:shadow-2xs'
+                }`}
+                title={`Case ${idx + 1}: ${c.organism} (${c.habitatName})`}
+              >
+                <div className="flex items-center justify-between w-full">
+                  <span
+                    className={`text-[10px] font-black uppercase tracking-wider ${
+                      isSelected ? 'text-sky-100' : 'text-slate-400'
+                    }`}
+                  >
+                    Case {idx + 1}
+                  </span>
+                  {isSolved ? (
+                    <CheckCircle2
+                      className={`w-3.5 h-3.5 ${
+                        isSelected ? 'text-white' : 'text-emerald-600 fill-emerald-100'
+                      }`}
+                    />
+                  ) : (
+                    <span
+                      className={`w-1.5 h-1.5 rounded-full ${
+                        isSelected ? 'bg-sky-200' : 'bg-slate-300'
+                      }`}
+                    />
+                  )}
+                </div>
+
+                <span className="font-extrabold truncate w-full mt-0.5 text-xs sm:text-[13px]">
+                  {c.organism}
+                </span>
+
+                <span
+                  className={`text-[10px] truncate w-full font-medium ${
+                    isSelected ? 'text-sky-100' : 'text-slate-500'
+                  }`}
+                >
+                  {c.habitatName}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
     </div>

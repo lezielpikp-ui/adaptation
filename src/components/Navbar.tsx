@@ -28,8 +28,29 @@ export const Navbar: React.FC<NavbarProps> = ({
     setIsMuted(muted);
   };
 
+  const handleNavClick = (tabId: string) => {
+    sound.playClick();
+    if (tabId === 'explore') {
+      setActiveTab('explore');
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          const guideEl = document.getElementById('mini-textbook-guide') || document.getElementById('concept-guide');
+          if (guideEl) {
+            guideEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            guideEl.classList.add('ring-4', 'ring-emerald-400', 'ring-offset-4', 'transition-all', 'duration-500');
+            setTimeout(() => {
+              guideEl.classList.remove('ring-4', 'ring-emerald-400', 'ring-offset-4');
+            }, 1800);
+          }
+        }, 60);
+      });
+    } else {
+      setActiveTab(tabId);
+    }
+  };
+
   const navItems = [
-    { id: 'explore', label: 'Concept Guide' },
+    { id: 'explore', label: 'Mini-Textbook Guide' },
     { id: 'sorter', label: '1. Sorter Lab' },
     { id: 'detective', label: '2. Habitat Detective' },
     { id: 'biocraft', label: '3. BioCraft Simulator' },
@@ -45,6 +66,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           onClick={() => {
             sound.playClick();
             setActiveTab('explore');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
           className="text-xl font-bold tracking-tight text-emerald-800 hover:text-emerald-700 transition-colors text-left flex items-center gap-2 cursor-pointer"
         >
@@ -61,10 +83,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             return (
               <button
                 key={item.id}
-                onClick={() => {
-                  sound.playClick();
-                  setActiveTab(item.id);
-                }}
+                onClick={() => handleNavClick(item.id)}
                 className={`px-3 py-2 text-sm font-semibold rounded-md transition-colors whitespace-nowrap cursor-pointer ${
                   isActive
                     ? 'bg-emerald-50 text-emerald-800 border-b-2 border-emerald-600'
@@ -123,10 +142,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           return (
             <button
               key={item.id}
-              onClick={() => {
-                sound.playClick();
-                setActiveTab(item.id);
-              }}
+              onClick={() => handleNavClick(item.id)}
               className={`px-3 py-1.5 text-xs font-semibold rounded-md whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
                 isActive ? 'bg-emerald-700 text-white shadow-xs' : 'bg-white text-slate-700 hover:bg-slate-50'
               }`}
